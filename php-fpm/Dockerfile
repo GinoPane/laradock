@@ -71,6 +71,22 @@ RUN set -xe; \
 #
 
 ###########################################################################
+# VLD:
+###########################################################################
+
+ARG INSTALL_VLD=false
+
+# Install the VLD extension
+RUN if [ ${INSTALL_VLD} = true ]; then \
+    # Install the current latest version for PHP >= 7
+
+    # Install the latest supported version for PHP 5.6
+    rm /etc/apt/preferences.d/no-debian-php && \
+    apt-get -y install libxml2-dev php-soap && \
+    docker-php-ext-install soap \
+;fi
+
+###########################################################################
 # BZ2:
 ###########################################################################
 
